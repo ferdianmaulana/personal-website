@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ferdian Maulana Akbar — Data Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0F14;
+    --bg-card: #13161D;
+    --bg-card2: #1A1E28;
+    --cyan: #00E5FF;
+    --cyan-dim: rgba(0,229,255,0.12);
+    --cyan-border: rgba(0,229,255,0.25);
+    --text: #E8EAF0;
+    --text-muted: #6B7280;
+    --text-dim: #9CA3AF;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.13);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+    background: rgba(13,15,20,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: var(--cyan);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    font-family: 'Space Mono', monospace;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ── LAYOUT ── */
+  main { padding-top: 60px; }
+
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 48px;
+    background: var(--cyan-border);
+  }
+
+  h2.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+    line-height: 1.25;
+  }
+
+  /* ── HERO ── */
+  #about {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hero-tag::before {
+    content: '▶';
+    font-size: 8px;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    background: var(--cyan);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1.1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-role span {
+    color: var(--cyan);
+    font-weight: 500;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .meta-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .hero-desc {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--cyan);
+    color: #0D0F14;
+    font-weight: 700;
+  }
+
+  .btn-primary:hover {
+    background: #33ECFF;
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--cyan);
+    border: 1px solid var(--cyan-border);
+  }
+
+  .btn-outline:hover {
+    background: var(--cyan-dim);
+    border-color: var(--cyan);
+  }
+
+  .btn svg { width: 16px; height: 16px; }
+
+  /* AVATAR */
+  .avatar-wrap {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    flex-shrink: 0;
+  }
+
+  .avatar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1.5px solid var(--cyan-border);
+    animation: spin 12s linear infinite;
+  }
+
+  .avatar-ring::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: var(--bg-card2);
+    border: 2px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .avatar-initials {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cyan);
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+
+  /* ── SKILLS ── */
+  #skills { border-top: 1px solid var(--border); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skill-group {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: border-color 0.2s;
+  }
+
+  .skill-group:hover { border-color: var(--cyan-border); }
+
+  .skill-group-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 0.1rem;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { border-top: 1px solid var(--border); }
+
+  .timeline {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 0;
+    bottom: 6px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--cyan-border), transparent);
+  }
+
+  .exp-item {
+    position: relative;
+    padding: 0 0 2.5rem 2rem;
+  }
+
+  .exp-item:last-child { padding-bottom: 0; }
+
+  .exp-dot {
+    position: absolute;
+    left: -5.5px;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--cyan);
+  }
+
+  .exp-dot.dim { border-color: var(--border-strong); }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .exp-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .exp-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    background: var(--cyan-dim);
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--cyan-border);
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .exp-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--bg-card2);
+    border: 1px solid var(--border-strong);
+    padding: 3px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { border-top: 1px solid var(--border); }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .portfolio-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portfolio-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--cyan-dim) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .portfolio-card:hover {
+    border-color: var(--cyan-border);
+    transform: translateY(-3px);
+    background: var(--bg-card2);
+  }
+
+  .portfolio-card:hover::before { opacity: 1; }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--cyan-dim);
+    border: 1px solid var(--cyan-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-arrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+
+  .portfolio-card:hover .card-arrow { gap: 10px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 2.5rem 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  footer span { color: var(--cyan); }
+
+  /* ── PORTFOLIO DETAIL OVERLAY ── */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(13,15,20,0.95);
+    backdrop-filter: blur(8px);
+    overflow-y: auto;
+    padding: 2rem;
+  }
+
+  .overlay.active { display: block; }
+
+  .overlay-inner {
+    max-width: 760px;
+    margin: 3rem auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .overlay-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.2s, border-color 0.2s;
+    font-family: monospace;
+    line-height: 1;
+  }
+
+  .overlay-close:hover { color: var(--cyan); border-color: var(--cyan-border); }
+
+  .overlay-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+  }
+
+  .overlay-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    padding-right: 3rem;
+  }
+
+  .overlay-desc {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .overlay-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .overlay-section h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .overlay-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .overlay-section ul li {
+    font-size: 14px;
+    color: var(--text-dim);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .overlay-section ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--cyan);
+    font-size: 12px;
+  }
+
+  .overlay-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .avatar-wrap { display: none; }
+    .overlay-inner { padding: 1.75rem 1.25rem; margin: 1rem auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#about" class="nav-logo">FMA.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#portfolio">portfolio</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-tag">Data Engineer</p>
+        <h1>Ferdian Maulana Akbar<span class="cursor"></span></h1>
+        <p class="hero-role">Building <span>reliable data pipelines</span> at scale</p>
+        <div class="hero-meta">
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+            Jakarta, Indonesia
+          </span>
+          <span class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            5+ years exp
+          </span>
+          <span class="meta-item" style="color: #4ade80;">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="8" height="8"><circle cx="12" cy="12" r="12"/></svg>
+            Open to work
+          </span>
+        </div>
+        <p class="hero-desc">
+          Data Engineer with 5+ years of experience at PT Astra International Tbk, Indonesia's largest automotive conglomerate, specializing in ETL pipeline development, data warehouse design, and ML-powered automation. I've built production Airflow pipelines that reduced manual effort by 71–83% across digital marketing, truck monitoring, and demand forecasting projects.
+        </p>
+        <div class="hero-links">
+          <a href="https://github.com/ferdianmaulana" target="_blank" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+            GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/ferdianmakbar/" target="_blank" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:ferdian.maulana.akbar@gmail.com" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+        <div class="avatar">
+          <span class="avatar-initials">FMA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">02 — Tech stack</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid reveal">
+
+      <div class="skill-group">
+        <p class="skill-group-label">Languages & Querying</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Node.js</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Pipelines & Orchestration</p>
+        <div class="tags">
+          <span class="tag">Apache Airflow</span>
+          <span class="tag">Crontab</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Data Modeling</p>
+        <div class="tags">
+          <span class="tag">dbt</span>
+          <span class="tag">Kimball</span>
+          <span class="tag">SCD</span>
+          <span class="tag">Star Schema</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Cloud & Storage</p>
+        <div class="tags">
+          <span class="tag">GCP</span>
+          <span class="tag">BigQuery</span>
+          <span class="tag">Cloud Functions</span>
+          <span class="tag">Cloud Run</span>
+          <span class="tag">GCS</span>
+          <span class="tag">Snowflake</span>
+          <span class="tag">Databricks</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">SQL Server</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">API & Backend</p>
+        <div class="tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">Flask</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">AI, ML, & NLP</p>
+        <div class="tags">
+          <span class="tag">LangChain</span>
+          <span class="tag">Sentiment Analysis</span>
+          <span class="tag">Topic Modeling</span>
+          <span class="tag">Predictive Analytics</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">BI & Dashboard Embedding</p>
+        <div class="tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">Looker</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Web Scraping & Automation</p>
+        <div class="tags">
+          <span class="tag">Selenium</span>
+          <span class="tag">BeautifulSoup</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-group-label">Version Control & CI/CD</p>
+        <div class="tags">
+          <span class="tag">GitHub</span>
+          <span class="tag">GitLab</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">03 — Work history</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+
+      <div class="exp-item reveal">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <span class="exp-title">Data Engineer</span>
+          <span class="exp-period">Apr 2021 — Present</span>
+        </div>
+        <p class="exp-company">PT Astra International Tbk · Full-time · Jakarta</p>
+        <p class="exp-desc">
+          Indonesia's largest diversified conglomerate (Fortune 500 equivalent), with operations spanning automotive, financial services, and infrastructure. Leading data engineering work across ETL pipelines, ML deployment, and product development.
+        </p>
+
+        <div style="margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.9rem;">
+
+          <div>
+            <p style="font-size: 13px; font-weight: 600; color: var(--cyan); font-family: 'Space Mono', monospace; margin-bottom: 0.4rem; letter-spacing: 0.04em;">ETL PIPELINES & AUTOMATION</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.35rem; padding-left: 0;">
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                Ads Performance & Social Media Monitoring: built end-to-end ETL pipelines integrating Facebook Ads, Google Ads, Google Analytics, YouTube, and SimilarWeb — reduced manual effort by 83%.
+              </li>
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                Truck Market Monitoring: operationalized Python extraction scripts into a production Airflow pipeline — reduced manual effort by 75%.
+              </li>
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                Customer Truck Usage Monitoring: built Airflow-orchestrated ETL for usage data tracking — reduced manual effort by 71%.
+              </li>
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                Data Warehouse Migration: designed a Snowflake DWH for a beauty company covering finance, reseller, and sales — delivered 10 SCD Type 2 dimensions and 19 fact tables using Kimball star schema, orchestrated via Airflow.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p style="font-size: 13px; font-weight: 600; color: var(--cyan); font-family: 'Space Mono', monospace; margin-bottom: 0.4rem; letter-spacing: 0.04em;">ML & PREDICTIVE TOOLS</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.35rem; padding-left: 0;">
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                Truck Demand Prediction: designed and deployed a full ML pipeline for demand forecasting — reduced manual effort by 82%.
+              </li>
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                Online Lead Scoring (Car Sales): implemented data flows via GCP Functions and App Script for an A/B experiment on lead scoring — increased conversion rate by 1% and revenue creation by 150% vs. control group.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p style="font-size: 13px; font-weight: 600; color: var(--cyan); font-family: 'Space Mono', monospace; margin-bottom: 0.4rem; letter-spacing: 0.04em;">PRODUCT & PLATFORM DEVELOPMENT</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.35rem; padding-left: 0;">
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                Sales Planning Tools: managed external data integrations and delivered analytics-ready datasets — won 1st place at Astra Innovation Competition 2023.
+              </li>
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                AI Chatbot for Sales Planning: designed and built an AI chatbot using FastAPI, LangChain, and Next.js for self-serve data insights.
+              </li>
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                Text Analysis Product: built NLP models for a media monitoring product — sentiment analysis, topic modeling, and location extraction on social media and news data.
+              </li>
+              <li class="exp-desc" style="margin:0; padding-left: 1.1rem; position: relative;">
+                <span style="position:absolute; left:0; color:var(--cyan); font-size:12px;">→</span>
+                Led the data workstream for a large-scale automotive distributor project, delivering integrated analytics dashboards and data quality monitoring across dealer and central systems.
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="tags" style="margin-top: 1rem;">
+          <span class="tag">Python</span>
+          <span class="tag">Apache Airflow</span>
+          <span class="tag">BigQuery</span>
+          <span class="tag">Snowflake</span>
+          <span class="tag">dbt</span>
+          <span class="tag">GCP</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Power BI</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-dot dim"></div>
+        <div class="exp-header">
+          <span class="exp-title">Web Developer Intern</span>
+          <span class="exp-period">Jun 2019 — Aug 2019</span>
+        </div>
+        <p class="exp-company">PT Bank Rakyat Indonesia Tbk · Internship · Jakarta</p>
+        <p class="exp-desc">
+          Developed a web-based employee attendance portal information system.
+        </p>
+        <div class="tags">
+          <span class="tag">Web Development</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <p class="section-label">04 — Selected work</p>
+    <h2 class="section-title">Portfolio</h2>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card reveal" onclick="openProject('auto-project')">
+        <div class="card-icon">🚗</div>
+        <div class="card-title">Automotive Aftersales Pipeline</div>
+        <p class="card-desc">Production-grade batch data pipeline for automotive dealer aftersales analytics — raw ingestion to BigQuery mart layer with dbt and Airflow.</p>
+        <div class="card-footer">
+          <div class="tags">
+            <span class="tag">Airflow</span>
+            <span class="tag">dbt</span>
+            <span class="tag">BigQuery</span>
+          </div>
+          <span class="card-arrow">view →</span>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal" onclick="openProject('marketing-ai-agent')">
+        <div class="card-icon">🤖</div>
+        <div class="card-title">Marketing AI Agent</div>
+        <p class="card-desc">Autonomous AI agent for YouTube channel analytics — ETL pipeline feeding a LangChain + Groq (Llama 3.3 70B) agent exposed via FastAPI.</p>
+        <div class="card-footer">
+          <div class="tags">
+            <span class="tag">LangChain</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+          <span class="card-arrow">view →</span>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal" onclick="openProject('powerbi-embedding')">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Power BI Report Embedding</div>
+        <p class="card-desc">Flask web app for securely embedding Power BI reports via Azure AD authentication and dynamic token generation.</p>
+        <div class="card-footer">
+          <div class="tags">
+            <span class="tag">Flask</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">Azure AD</span>
+          </div>
+          <span class="card-arrow">view →</span>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal" onclick="openProject('ml-predictor')">
+        <div class="card-icon">⚡</div>
+        <div class="card-title">FastAPI ML Predictor</div>
+        <p class="card-desc">REST API for serving machine learning model predictions — supports single and batch inference with Dockerized deployment.</p>
+        <div class="card-footer">
+          <div class="tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">Python</span>
+            <span class="tag">Docker</span>
+          </div>
+          <span class="card-arrow">view →</span>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal" onclick="openProject('star-schema-etl')">
+        <div class="card-icon">🏗️</div>
+        <div class="card-title">Star Schema ETL with Airflow</div>
+        <p class="card-desc">Scalable ETL pipeline from GCS to BigQuery organized in a Kimball star schema — raw, core (SCD Type 2), and datamart layers with CI/CD.</p>
+        <div class="card-footer">
+          <div class="tags">
+            <span class="tag">Airflow</span>
+            <span class="tag">BigQuery</span>
+            <span class="tag">GCS</span>
+          </div>
+          <span class="card-arrow">view →</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Built by <span>Ferdian Maulana Akbar</span> · Data Engineer · Jakarta · 2026
+</footer>
+
+<!-- PORTFOLIO OVERLAY -->
+<div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+  <div class="overlay-inner" id="overlay-inner">
+    <button class="overlay-close" onclick="closeProject()">✕</button>
+    <div id="overlay-content"></div>
+  </div>
+</div>
+
+<script>
+const projects = {
+  'auto-project': {
+    label: 'Batch Data Pipeline',
+    title: 'Automotive Aftersales Pipeline',
+    desc: 'A production-grade batch data pipeline for automotive dealer aftersales analytics in Indonesia. Ingests daily transactional data from a custom FastAPI dummy API, validates and transforms it through multiple BigQuery layers (raw → staging → consumption), and serves analytics-ready mart tables for dealer and brand performance.',
+    highlights: [
+      'Daily ingestion of 6 data domains (vehicles, spare parts, service orders, sales, warranty claims)',
+      'Automated dbt transformation triggered by Airflow ExternalTaskSensor after ingestion',
+      'Data quality validation at every layer — Python checks on raw, dbt schema tests on staging/consumption',
+      'Slack alerting on any task failure via Slack Bot API',
+      'CI/CD via GitHub Actions — every push to main auto-deploys to Tencent Cloud Lighthouse server',
+      'Consumption layer includes dim_vehicles, dim_dealers, fct_service_orders, fct_sales_orders, mart_dealer_performance, mart_brand_performance'
+    ],
+    stack: ['Apache Airflow', 'dbt Core', 'BigQuery', 'FastAPI', 'Python', 'Docker', 'GitHub Actions'],
+    github: 'https://github.com/ferdianmaulana/auto-project'
+  },
+  'marketing-ai-agent': {
+    label: 'AI Agent + ETL',
+    title: 'Marketing AI Agent',
+    desc: 'An autonomous AI agent that analyzes YouTube channel performance data and generates actionable marketing insights. Combines an ETL pipeline (YouTube Data API → PostgreSQL) with a LangChain agent powered by Groq (Llama 3.3 70B) — users ask natural language questions and the agent decides which tools to call, fetches real data, and returns structured recommendations.',
+    highlights: [
+      'ETL pipeline pulls channel snapshots and video stats from YouTube Data API v3 into PostgreSQL',
+      'LangChain AgentExecutor with 4 structured tools: list channels, get stats, top videos, compare channels',
+      'Groq (Llama 3.3 70B) as the LLM backbone for reasoning and synthesis',
+      'FastAPI backend exposes /ask and /etl/run endpoints with Swagger docs',
+      'CI/CD via GitHub Actions → SSH → Docker Compose on cloud VM',
+      'Next.js frontend for conversational UI, consuming the FastAPI backend'
+    ],
+    stack: ['LangChain', 'Groq (Llama 3.3 70B)', 'FastAPI', 'PostgreSQL', 'Python', 'Next.js', 'Docker', 'GitHub Actions'],
+    github: 'https://github.com/ferdianmaulana/marketing-ai-agent',
+    github2: 'https://github.com/ferdianmaulana/marketing-ai-frontend',
+    github2Label: 'Frontend Repo'
+  },
+  'powerbi-embedding': {
+    label: 'BI Embedding',
+    title: 'Power BI Report Embedding',
+    desc: 'A Flask web application for securely embedding Microsoft Power BI reports into custom web interfaces. Demonstrates how to integrate Power BI with Azure AD authentication, dynamic token generation, and configurable workspace/report setup — making interactive analytics embeddable in any web product.',
+    highlights: [
+      'Secure authentication via Azure AD Service Principal or Master User modes',
+      'Dynamic embed token generation for per-session report access',
+      'Configurable workspace ID, report ID, and tenant credentials via config.py',
+      'Modular structure: services layer handles Power BI and Azure AD separately',
+      'Dockerized for easy deployment'
+    ],
+    stack: ['Flask', 'Power BI Embedded', 'Azure AD', 'Python', 'Docker', 'JavaScript'],
+    github: 'https://github.com/ferdianmaulana/Flask-Power-BI-Report-Embedding'
+  },
+  'ml-predictor': {
+    label: 'ML Serving',
+    title: 'FastAPI ML Predictor',
+    desc: 'A FastAPI application for serving machine learning model predictions via REST API. Supports both single and batch inference with a clean modular structure — plug in any trained scikit-learn model (joblib) and get a production-ready prediction API with Swagger docs and Docker deployment out of the box.',
+    highlights: [
+      'Single prediction endpoint: POST /api/predict/ with feature array input',
+      'Batch prediction endpoint: POST /api/predict/batch with metadata (processed count, success rate, processing time)',
+      'Modular structure: api/, core/, models/ layers cleanly separated',
+      'ML model wrapper in core/ml_model.py — swap any joblib model with no API changes',
+      'Swagger UI at /docs and ReDoc at /redoc auto-generated',
+      'Dockerized for straightforward deployment'
+    ],
+    stack: ['FastAPI', 'Python', 'scikit-learn', 'joblib', 'Docker', 'Pydantic'],
+    github: 'https://github.com/ferdianmaulana/FastAPI-ML-Predictor'
+  },
+  'star-schema-etl': {
+    label: 'Data Warehouse',
+    title: 'Star Schema ETL with Airflow',
+    desc: 'A scalable data pipeline implementing Kimball star schema methodology — ETL from Google Cloud Storage to BigQuery across three layers: raw ingestion, core (SCD Type 2 dimensions + fact tables), and datamart (pre-aggregated analytics views). Includes CI/CD with separate production and staging environments.',
+    highlights: [
+      '3-layer architecture: raw (GCS → BQ), core (star schema with SCD Type 2), datamart (RFM analytics)',
+      'SCD Type 2 dimensions with surrogate keys, effective date ranges, and is_current flag',
+      'Staggered DAG scheduling with ExternalTaskSensors ensuring correct sequencing',
+      'MS Teams notification plugin for task failure alerts',
+      'CI/CD: push to main deploys to production, any other branch deploys to staging automatically',
+      'YAML-based config for table schemas — easy to add new data domains'
+    ],
+    stack: ['Apache Airflow', 'BigQuery', 'GCS', 'Python', 'SQL', 'Docker', 'GitHub Actions'],
+    github: 'https://github.com/ferdianmaulana/Star-Schema-ETL-Airflow'
+  }
+};
+
+function openProject(id) {
+  const p = projects[id];
+  if (!p) return;
+
+  const stackTags = p.stack.map(s => `<span class="tag">${s}</span>`).join('');
+  const highlights = p.highlights.map(h => `<li>${h}</li>`).join('');
+
+  document.getElementById('overlay-content').innerHTML = `
+    <p class="overlay-tag">${p.label}</p>
+    <h2 class="overlay-title">${p.title}</h2>
+    <p class="overlay-desc">${p.desc}</p>
+    <div class="overlay-section">
+      <h4>Key highlights</h4>
+      <ul>${highlights}</ul>
+    </div>
+    <div class="overlay-section">
+      <h4>Tech stack</h4>
+      <div class="tags" style="margin-top:0.5rem">${stackTags}</div>
+    </div>
+    <div class="overlay-links">
+      <a href="${p.github}" target="_blank" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+        ${p.github2 ? 'Backend Repo' : 'View on GitHub'}
+      </a>
+      ${p.github2 ? `<a href="${p.github2}" target="_blank" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+        ${p.github2Label}
+      </a>` : ''}
+      <button class="btn btn-outline" onclick="closeProject()">← Back to portfolio</button>
+    </div>
+  `;
+
+  document.getElementById('overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProject() {
+  document.getElementById('overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('overlay')) closeProject();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
